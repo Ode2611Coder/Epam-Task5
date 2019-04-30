@@ -1,0 +1,71 @@
+import java.io.*;
+
+import java.util.*;
+
+import java.text.*;
+
+import java.math.*;
+
+import java.util.regex.*;
+
+public class Solution {
+
+static int t[],j;
+static int g[][];
+static boolean v[];
+public static void dfs(int ve,int n){
+    t[j]++;
+    v[ve]=true;
+    //System.out.print(ve+" ");
+    for(int i=0;i<n;i++){
+        if(g[ve][i]==1 && !v[i])
+            dfs(i,n);
+    }
+}
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int q = in.nextInt(),i=0;
+        long c;
+    for(int a0 = 0; a0 < q; a0++){
+       // System.out.println("test case "+a0);
+        j=0;
+        c=0;
+        int n = in.nextInt();
+        t=new int[n];
+        g=new int[n][n];
+        v=new boolean[n];
+        int m = in.nextInt();
+        long x = in.nextLong();
+        long y = in.nextLong();
+       // System.out.println(" input "+n+" "+m+" "+x+" "+y);
+        if(x<=y || m==0){
+            System.out.println(+x*n);
+                for(int a1 = 0; a1 < m; a1++){
+                     in.nextInt();
+                     in.nextInt();
+                                    }
+        }
+        else{
+        for(int a1 = 0; a1 < m; a1++){
+            int c1 = in.nextInt();
+            int c2 = in.nextInt();
+            g[c1-1][c2-1]=g[c2-1][c1-1]=1;
+                                    }
+        for(i=0;i<n;i++){
+            if(!v[i]){
+                dfs(i,n);
+            j++;
+          //  System.out.println("This was tree"+j +"th tree with branch  "+t[j-1]);
+            }
+        }
+        for(i=0;i<j;i++){
+            c+=t[i]-1;
+        }
+            c*=y;
+            c+=j*x;
+            System.out.println(c);
+
+    }
+    }
+}
+}
